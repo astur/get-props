@@ -15,7 +15,19 @@ npm i get-props
 
 ```js
 const getProps = require('get-props');
+
+getProps(obj, options);
 ```
+
+**obj** - object whose properties you want to receive
+
+**options** - object with following fields:
+
+* **enums** (Boolean, default: `true`) - if `false` only enumerable properties of `obj` will found.
+
+* **protos** (Boolean, default: `false`) - if `true` prototype chain properties of `obj` will found too.
+
+* **symbols** (Boolean, default: `false`) - if `true` properties of `obj` with symbol key will found too.
 
 ## License
 
