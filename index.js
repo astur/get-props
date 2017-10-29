@@ -1,14 +1,8 @@
-module.exports = (obj, config) => {
-    const {
-        enums,
-        protos,
-        symbols,
-    } = Object.assign({
-        enums: true,
-        protos: false,
-        symbols: false,
-    }, config);
-
+module.exports = (obj, {
+    enums = true,
+    protos = false,
+    symbols = false,
+} = {}) => {
     const isEnum = Object.prototype.propertyIsEnumerable.bind(obj);
     const props = [];
     do {
