@@ -6,6 +6,10 @@ test('Base', t => {
 });
 
 test('Enums', t => {
+    const o = {};
+    Reflect.defineProperty(o, 'x', {enumerable: false, value: 0});
+    t.is(getProps(o, {enums: false}).indexOf('x'), -1);
+    t.not(getProps(o).indexOf('x'), -1);
     t.is(getProps([], {enums: false}).indexOf('length'), -1);
     t.not(getProps([]).indexOf('length'), -1);
 });
