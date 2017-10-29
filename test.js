@@ -18,11 +18,14 @@ test('Protos', t => {
     const F = function(){
         this.x = 1;
     };
+    F.prototype.y = 1;
     const p = new F();
     const o = {};
     Reflect.setPrototypeOf(o, p);
     t.is(getProps(o).indexOf('x'), -1);
     t.not(getProps(o, {protos: true}).indexOf('x'), -1);
+    t.is(getProps(o, {protos: true}).indexOf('y'), -1);
+    t.is(getProps(o, {protos: true}).indexOf('toString'), -1);
 });
 
 test('Symbols', t => {

@@ -11,6 +11,7 @@ module.exports = (obj, {
         if(symbols){
             keys.push(...Object.getOwnPropertySymbols(obj));
         }
+        if(keys.includes('constructor')) break;
         props.push(...enums ? keys : keys.filter(key => isEnum(key)));
         obj = protos ? Object.getPrototypeOf(obj) : false;
     } while(obj);
