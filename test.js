@@ -1,10 +1,6 @@
 const test = require('ava');
 const getProps = require('.');
 
-test('Base', t => {
-    t.is(typeof getProps, 'function');
-});
-
 test('Enums', t => {
     const o = {};
     Reflect.defineProperty(o, 'x', {enumerable: false, value: 0});
