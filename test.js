@@ -15,8 +15,14 @@ test('Enums', t => {
 });
 
 test('Protos', t => {
-    t.is(getProps([]).indexOf('map'), -1);
-    t.not(getProps([], {protos: true}).indexOf('map'), -1);
+    const F = function(){
+        this.x = 1;
+    };
+    const p = new F();
+    const o = {};
+    Reflect.setPrototypeOf(o, p);
+    t.is(getProps(o).indexOf('x'), -1);
+    t.not(getProps(o, {protos: true}).indexOf('x'), -1);
 });
 
 test('Symbols', t => {
