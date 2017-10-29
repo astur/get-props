@@ -16,7 +16,25 @@ npm i get-props
 ```js
 const getProps = require('get-props');
 
-getProps(obj, options);
+const s = Symbol();
+const o1 = {};
+o1[s] = 1;
+
+const o2 = {};
+Reflect.defineProperty(o2, 'notEnum', {enumerable: false, value: 1});
+
+const F = function(){this.field = 1};
+F.prototype.staticField = 1;
+const o3 = new F();
+
+Reflect.setPrototypeOf(o1, o2);
+Reflect.setPrototypeOf(o2, o3);
+
+console.log(getProps(o1, {protos: true, symbols: true}));
+//[Symbol(""), "notEnum", "field"]
+
+console.log(getProps(o1, {enums: false}));
+//[]
 ```
 
 **obj** - object whose properties you want to receive
@@ -25,7 +43,7 @@ getProps(obj, options);
 
 * **enums** (Boolean, default: `true`) - if `false` only enumerable properties of `obj` will found.
 
-* **protos** (Boolean, default: `false`) - if `true` prototype chain properties of `obj` will found too.
+* **protos** (Boolean, default: `false`) - if `true` properties of objects (but not classes) in prototype chain of `obj` will found too.
 
 * **symbols** (Boolean, default: `false`) - if `true` properties of `obj` with symbol key will found too.
 
