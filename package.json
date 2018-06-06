@@ -12,8 +12,8 @@
     "url": "https://github.com/astur/get-props.git"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "eslint": "^4.7.2",
+    "ava": "^0.25.0",
+    "eslint": "^4.19.1",
     "eslint-config-astur": "0.0.2"
   },
   "keywords": [
