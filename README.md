@@ -16,6 +16,24 @@ npm i get-props
 ```js
 const getProps = require('get-props');
 
+getProps(obj, options);
+```
+
+**obj** - object whose properties you want to receive
+
+**options** - object with following fields:
+
+* **enums** (Boolean, default: `true`) - if `false` only enumerable properties of `obj` will found.
+
+* **protos** (Boolean, default: `false`) - if `true` properties of objects (but not classes) in prototype chain of `obj` will found too.
+
+* **symbols** (Boolean, default: `false`) - if `true` properties of `obj` with symbol key will found too.
+
+Returns array of property names.
+
+## Example
+
+```js
 const s = Symbol();
 const o1 = {};
 o1[s] = 1;
@@ -36,16 +54,6 @@ console.log(getProps(o1, {protos: true, symbols: true}));
 console.log(getProps(o1, {enums: false}));
 //[]
 ```
-
-**obj** - object whose properties you want to receive
-
-**options** - object with following fields:
-
-* **enums** (Boolean, default: `true`) - if `false` only enumerable properties of `obj` will found.
-
-* **protos** (Boolean, default: `false`) - if `true` properties of objects (but not classes) in prototype chain of `obj` will found too.
-
-* **symbols** (Boolean, default: `false`) - if `true` properties of `obj` with symbol key will found too.
 
 ## License
 
